@@ -11,13 +11,14 @@
     "url": "https://github.com/htmlacademy-javascript/2574247-kekstagram-2/issues"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "8.48.0",
     "eslint-config-htmlacademy": "9.1.1",
     "vite": "4.4.9"
   },
   "license": "MIT",
   "scripts": {
-    "start": "vite --port 3000 --open",
+    "start": "cross-env BROWSER=chrome vite --port 3000 --open ",
     "lint": "eslint js/"
   },
   "engines": {
