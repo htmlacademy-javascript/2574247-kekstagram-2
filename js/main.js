@@ -93,6 +93,5 @@ function generatePhoto() {
 }
 
 const similarPhotos = Array.from({ length: NUMBEROFPHOTOS }, generatePhoto);
-
 console.log(similarPhotos);
 
