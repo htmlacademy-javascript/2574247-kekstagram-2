@@ -1,12 +1,11 @@
 let idCount = 0;
 let photoIdx = 0;
-const likesMin = 15;
-const likesMax = 200;
-const commentsMin = 0;
-const commentsMax = 30;
-const avatarMinIndex = 1;
-const avatarMaxIndex = 6;
-
+const LIKES_MIN = 15;
+const LIKES_MAX = 200;
+const COMMENTS_MIN = 0;
+const COMMENTS_MAX = 30;
+const AVATAR_MIN_INDEX = 1;
+const AVATAR_MAX_INDEX = 6;
 const NUMBEROFPHOTOS = 25;
 
 const DESCRIPTION = [
@@ -72,7 +71,7 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 function generateComment() {
   return {
     id: (idCount += 1),
-    avatar: `img/avatar/${getRandomInteger(avatarMinIndex, avatarMaxIndex)}.svg`,
+    avatar: `img/avatar/${getRandomInteger(AVATAR_MIN_INDEX, AVATAR_MAX_INDEX)}.svg`,
     message: getRandomArrayElement(MESSAGES),
     name: getRandomArrayElement(AUTORSNAME)
   };
@@ -80,8 +79,8 @@ function generateComment() {
 
 function generatePhoto() {
   const description = getRandomArrayElement(DESCRIPTION);
-  const likes = getRandomInteger(likesMin, likesMax);
-  const commentsCount = getRandomInteger(commentsMin, commentsMax);
+  const likes = getRandomInteger(LIKES_MIN, LIKES_MAX);
+  const commentsCount = getRandomInteger(COMMENTS_MIN, COMMENTS_MAX);
   const comments = Array.from({ length: commentsCount }, generateComment);
 
   return {
