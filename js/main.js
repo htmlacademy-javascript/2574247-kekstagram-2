@@ -91,6 +91,9 @@ function generatePhoto() {
   };
 }
 
-const similarPhotos = Array.from({ length: NUMBEROFPHOTOS }, generatePhoto);
-console.log(similarPhotos);
+function getSimilarPhotos(){
+  const similarPhotos = Array.from({ length: NUMBEROFPHOTOS }, generatePhoto);
+  return similarPhotos;
+}
+getSimilarPhotos();
 
