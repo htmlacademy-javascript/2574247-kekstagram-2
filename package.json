@@ -18,6 +18,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "start": "cross-env BROWSER=chrome vite --port 3000 --open",
     "start": "cross-env BROWSER=chrome vite --port 3000 --open ",
     "lint": "eslint js/"
   },
