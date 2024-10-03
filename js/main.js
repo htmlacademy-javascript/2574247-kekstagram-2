@@ -6,7 +6,7 @@ const COMMENTS_MIN = 0;
 const COMMENTS_MAX = 30;
 const AVATAR_MIN_INDEX = 1;
 const AVATAR_MAX_INDEX = 6;
-const NUMBEROFPHOTOS = 25;
+const NUMBER_OF_PHOTOS = 25;
 
 const DESCRIPTION = [
   'фото парка с прудом',
@@ -92,7 +92,7 @@ function generatePhoto() {
 }
 
 function getSimilarPhotos(){
-  const similarPhotos = Array.from({ length: NUMBEROFPHOTOS }, generatePhoto);
+  const similarPhotos = Array.from({ length: NUMBER_OF_PHOTOS }, generatePhoto);
   return similarPhotos;
 }
 getSimilarPhotos();
