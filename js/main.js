@@ -1,5 +1,5 @@
-import {generatePhoto} from './generatePhoto';
-import {NUMBER_OF_PHOTOS} from './constants';
+import {generatePhoto} from './generatePhoto.js';
+import {NUMBER_OF_PHOTOS} from './constants.js';
 
 
 function getSimilarPhotos(){
