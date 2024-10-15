@@ -1,10 +1,13 @@
-import {generatePhoto} from './generatePhoto';
-import {NUMBER_OF_PHOTOS} from './constants';
+import {createPhoto} from './createPhoto.js';
+import {NUMBER_OF_PHOTOS} from './constants.js';
 
 
-function getSimilarPhotos(){
-  const similarPhotos = Array.from({ length: NUMBER_OF_PHOTOS }, generatePhoto);
-  return similarPhotos;
-}
-getSimilarPhotos();
+//function getSimilarPhotos(){
+const mockedPhotos = Array.from({ length: NUMBER_OF_PHOTOS }, createPhoto);
+//   return similarPhotos;
+// }
+//getSimilarPhotos();
+
+//export{getSimilarPhotos};
+export{mockedPhotos};
 

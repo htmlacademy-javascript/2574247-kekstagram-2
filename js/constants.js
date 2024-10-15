@@ -5,8 +5,7 @@ const COMMENTS_MAX = 30;
 const AVATAR_MIN_INDEX = 1;
 const AVATAR_MAX_INDEX = 6;
 const NUMBER_OF_PHOTOS = 25;
-const PHOTO_INDEX_MIN = 1;
-const PHOTO_INDEX_MAX = 1000;
+
 const DESCRIPTION = [
   'фото парка с прудом',
   'фото указателя к морю',
@@ -73,6 +72,4 @@ export{
   DESCRIPTION,
   AUTORSNAME,
   MESSAGES,
-  PHOTO_INDEX_MIN,
-  PHOTO_INDEX_MAX
 };
