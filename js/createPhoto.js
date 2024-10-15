@@ -17,5 +17,4 @@ function createPhoto() {
     comments,
   };
 }
-//console.log('cf', createPhoto())
 export{createPhoto};

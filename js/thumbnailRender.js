@@ -3,7 +3,7 @@ import { mockedPhotos } from './main.js';
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
 
-const createThumbnail = (photo)=>{
+const createThumbnail = (photo) => {
   const thumbnail = template.cloneNode(true);
   const image = thumbnail.querySelector('.picture__img');
 
@@ -21,5 +21,6 @@ mockedPhotos.forEach((photo) => {
   const thumbnail = createThumbnail(photo);
   fragment.appendChild(thumbnail);
 });
+
 container.append(fragment);
 
