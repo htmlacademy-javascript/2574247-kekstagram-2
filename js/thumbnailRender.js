@@ -1,4 +1,4 @@
-import { mockedPhotos } from './main.js';
+import { mockedPhotos } from './data.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
@@ -23,4 +23,4 @@ mockedPhotos.forEach((photo) => {
 });
 
 container.append(fragment);
-
+export{container,fragment};
