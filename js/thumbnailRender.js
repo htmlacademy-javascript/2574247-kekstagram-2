@@ -23,4 +23,4 @@ mockedPhotos.forEach((photo) => {
 });
 
 container.append(fragment);
-export{container,fragment};
+
