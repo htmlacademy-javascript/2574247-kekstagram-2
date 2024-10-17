@@ -1,3 +1,4 @@
 import './thumbnailRender';
+import './createFullSizePhoto';
 
 

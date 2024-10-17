@@ -11,7 +11,8 @@ function createPhoto() {
   const comments = Array.from({ length: commentsCount }, () => generateComment(existingCommentIds));
 
   return {
-    url: `photos/${(photoIdx += 1)}.jpg`,
+    id: ++photoIdx,
+    url: `photos/${(photoIdx)}.jpg`,
     description,
     likes,
     comments,

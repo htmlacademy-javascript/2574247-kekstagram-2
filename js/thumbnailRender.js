@@ -1,11 +1,13 @@
 import { mockedPhotos } from './data.js';
-
+console.log(mockedPhotos);
 const template = document.querySelector('#picture').content.querySelector('.picture');
-const container = document.querySelector('.pictures');
+const containerThumbnails = document.querySelector('.pictures');
 
 const createThumbnail = (photo) => {
   const thumbnail = template.cloneNode(true);
   const image = thumbnail.querySelector('.picture__img');
+
+  thumbnail.dataset.photoId = photo.id;
 
   image.src = photo.url;
   image.alt = photo.description;
@@ -22,5 +24,5 @@ mockedPhotos.forEach((photo) => {
   fragment.appendChild(thumbnail);
 });
 
-container.append(fragment);
-
+containerThumbnails.append(fragment);
+export {containerThumbnails};
