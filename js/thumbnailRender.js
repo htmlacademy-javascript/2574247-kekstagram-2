@@ -1,5 +1,5 @@
 import { mockedPhotos } from './data.js';
-console.log(mockedPhotos);
+//console.log(mockedPhotos);
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const containerThumbnails = document.querySelector('.pictures');
 

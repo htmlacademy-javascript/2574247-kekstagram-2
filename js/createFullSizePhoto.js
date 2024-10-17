@@ -8,15 +8,7 @@ const socialCaption = bigPicture.querySelector('.social__caption');
 const likesCount = bigPicture.querySelector('.likes-count');
 const socialCommentTotalCount = bigPicture.querySelector('.social__comment-total-count');
 
-
-containerThumbnails.addEventListener('click', (evt) =>{
-  const currentPhotoNode = evt.target.closest('.picture');
-  if(currentPhotoNode){
-    openFullPhoto(currentPhotoNode.dataset.photoId);
-  }
-});
-
-function openFullPhoto(photoId){
+const openFullPhoto = (photoId) => {
   bigPicture.classList.remove('hidden');
   const currentPhoto = mockedPhotos.find((mockedPhoto) => mockedPhoto.id === +photoId);
 
@@ -24,11 +16,18 @@ function openFullPhoto(photoId){
   socialCaption.textContent = currentPhoto.description;
   likesCount.textContent = currentPhoto.likes;
   socialCommentTotalCount.textContent = currentPhoto.comments.length;
-  console.log('bp', bigPictureImg.src);
-}
+  //console.log('bp', bigPictureImg.src);
+};
 
 bigPictureCancel.addEventListener('click',() =>{
   bigPicture.classList.add('hidden');
+});
+
+containerThumbnails.addEventListener('click', (evt) =>{
+  const currentPhotoNode = evt.target.closest('.picture');
+  if(currentPhotoNode){
+    openFullPhoto(currentPhotoNode.dataset.photoId);
+  }
 });
 
 
