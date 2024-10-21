@@ -1,9 +1,9 @@
 import { mockedPhotos } from './data.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
-const container = document.querySelector('.pictures');
+const thumbnailsContainer = document.querySelector('.pictures');
 
-const createThumbnail = (photo) => {
+const createThumbnail = ({id, url, description, comments, likes}) => {
   const thumbnail = template.cloneNode(true);
   const image = thumbnail.querySelector('.picture__img');
 
