@@ -1,25 +1,26 @@
 import { mockedPhotos } from './data.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
-const container = document.querySelector('.pictures');
-const createThumbnail = (photo) => {
+const thumbnailsContainer = document.querySelector('.pictures');
+
+const createThumbnail = ({id, url, description, comments, likes}) => {
   const thumbnail = template.cloneNode(true);
   const image = thumbnail.querySelector('.picture__img');
 
-  image.src = photo.url;
-  image.alt = photo.description;
+  thumbnail.dataset.photoId = id;
+  image.src = url;
+  image.alt = description;
 
-  thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
-  thumbnail.querySelector('.picture__likes').textContent = photo.likes;
+  thumbnail.querySelector('.picture__comments').textContent = comments.length;
+  thumbnail.querySelector('.picture__likes').textContent = likes;
   return thumbnail;
 };
-
 const fragment = document.createDocumentFragment();
 
 mockedPhotos.forEach((photo) => {
   const thumbnail = createThumbnail(photo);
   fragment.appendChild(thumbnail);
 });
+thumbnailsContainer.append(fragment);
 
-container.append(fragment);
-
+export {thumbnailsContainer};
