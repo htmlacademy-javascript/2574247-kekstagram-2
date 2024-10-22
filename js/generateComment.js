@@ -6,9 +6,10 @@ function generateComment(existingIds) {
   existingIds.push(id);
   return {
     id,
-    avatar: `img/avatar/${getRandomInteger(AVATAR_MIN_INDEX, AVATAR_MAX_INDEX)}.svg`,
+    avatar: `img/avatar-${getRandomInteger(AVATAR_MIN_INDEX, AVATAR_MAX_INDEX)}.svg`,
     message: getRandomArrayElement(MESSAGES),
     name: getRandomArrayElement(AUTORSNAME)
   };
 }
+
 export{generateComment};
