@@ -16,18 +16,17 @@ const openFullPhoto = (photoId) => {
   const currentPhoto = mockedPhotos.find((mockedPhoto) => mockedPhoto.id === +photoId);
 
   const {url, description, likes, comments} = currentPhoto;
-
   bigPictureImg.src = url;
   socialCaption.textContent = description;
   likesCount.textContent = likes;
   socialCommentTotalCount.textContent = comments.length;
   socialCommentsTemplate.innerHTML = '';
-  const currentPhotoComments = comments.map(({avatar, name, message}) => `
+  const currentPhotoComments = comments.map(({avatar, name, message}) =>`
    <li class="social__comment">
       <img class="social__picture" src="${avatar}" alt="${name}" width="35" height="35">
       <p class="social__text">${message}</p>
   </li>`).join('');
-  socialCommentsTemplate.insertAdjacentElement(currentPhotoComments);
+  socialCommentsTemplate.insertAdjacentHTML('beforeEnd',currentPhotoComments);
   bigPicture.querySelector('.social__caption').textContent = description;
   document.body.classList.add('modal-open');
 };
