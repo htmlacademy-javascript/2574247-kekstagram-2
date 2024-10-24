@@ -34,10 +34,13 @@ function onLoadMoreComments() {
     shownCommentCountText = comments.length;
     socialCommentsLoader.classList.add('hidden');
   }
+
+
   renderComments();
 }
 
 const openFullPhoto = (photoId) => {
+  socialCommentsLoader.classList.remove('hidden');
   bigPicture.classList.remove('hidden');
   const currentPhoto = mockedPhotos.find((mockedPhoto) => mockedPhoto.id === +photoId);
 
