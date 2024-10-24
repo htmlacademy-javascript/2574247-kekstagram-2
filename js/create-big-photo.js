@@ -1,54 +1,82 @@
-import {thumbnailsContainer} from './thumbnail-render';
-import { mockedPhotos } from './data';
+import { thumbnailsContainer } from './thumbnail-render.js';
+import { mockedPhotos } from './data.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const socialCaption = bigPicture.querySelector('.social__caption');
 const likesCount = bigPicture.querySelector('.likes-count');
-const socialCommentTotalCount = bigPicture.querySelector('.social__comment-total-count');
+const commentTotalCount = bigPicture.querySelector('.social__comment-total-count');
+const shownCommentCount = bigPicture.querySelector('.social__comment-shown-count');
 const socialCommentsTemplate = document.querySelector('.social__comments');
 const socialCommentsLoader = document.querySelector('.comments-loader');
-const socialCommentCount = document.querySelector('.social__comment-count');
+
+let shownCommentCountText = 5;
+let comments = [];
+
+function renderComments() {
+  const totalComments = comments.length;
+  const currentCount = Math.min(shownCommentCountText, totalComments);
+
+  shownCommentCount.textContent = currentCount;
+  socialCommentsTemplate.innerHTML = '';
+  const currentPhotoComments = comments.slice(0, currentCount).map(({ avatar, name, message }) => `
+    <li class="social__comment">
+      <img class="social__picture" src="${avatar}" alt="${name}" width="35" height="35">
+      <p class="social__text">${message}</p>
+    </li>`).join('');
+  socialCommentsTemplate.insertAdjacentHTML('beforeEnd', currentPhotoComments);
+}
+
+function onLoadMoreComments() {
+  shownCommentCountText += 5;
+  if (shownCommentCountText >= comments.length) {
+    shownCommentCountText = comments.length;
+    socialCommentsLoader.disabled = true;
+  }
+  renderComments();
+}
 
 const openFullPhoto = (photoId) => {
   bigPicture.classList.remove('hidden');
   const currentPhoto = mockedPhotos.find((mockedPhoto) => mockedPhoto.id === +photoId);
 
-  const {url, description, likes, comments} = currentPhoto;
+  const { url, description, likes, comments: photoComments } = currentPhoto;
+
   bigPictureImg.src = url;
   socialCaption.textContent = description;
   likesCount.textContent = likes;
-  socialCommentTotalCount.textContent = comments.length;
+  commentTotalCount.textContent = photoComments.length;
   socialCommentsTemplate.innerHTML = '';
-  const currentPhotoComments = comments.map(({avatar, name, message}) =>`
-   <li class="social__comment">
-      <img class="social__picture" src="${avatar}" alt="${name}" width="35" height="35">
-      <p class="social__text">${message}</p>
-  </li>`).join('');
-  socialCommentsTemplate.insertAdjacentHTML('beforeEnd',currentPhotoComments);
-  bigPicture.querySelector('.social__caption').textContent = description;
+
+  comments = photoComments;
+  shownCommentCountText = 5;
+  renderComments();
+
   document.body.classList.add('modal-open');
+  socialCommentsLoader.addEventListener('click', onLoadMoreComments);
+  document.addEventListener('keydown', onBigPhotoEscKeydown);
 };
 
 thumbnailsContainer.addEventListener('click', (evt) => {
   const currentPhotoNode = evt.target.closest('.picture');
-  if(currentPhotoNode){
+  if (currentPhotoNode) {
     openFullPhoto(currentPhotoNode.dataset.photoId);
   }
 });
 
-socialCommentCount.classList.add('hidden');
-socialCommentsLoader.classList.add('hidden');
+bigPictureCancel.addEventListener('click', onCloseBigPhoto);
 
-bigPictureCancel.addEventListener('click',() => {
+function onCloseBigPhoto() {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
-});
+  socialCommentsLoader.removeEventListener('click', onLoadMoreComments);
+  document.removeEventListener('keydown', onBigPhotoEscKeydown);
+}
 
-document.addEventListener('keydown',((evt) => {
-  if(evt.key === 'Escape'){
+function onBigPhotoEscKeydown(evt) {
+  if (evt.key === 'Escape') {
     evt.preventDefault();
-    bigPicture.classList.add('hidden');
+    onCloseBigPhoto();
   }
-}));
+}
