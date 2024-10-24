@@ -32,7 +32,7 @@ function onLoadMoreComments() {
   shownCommentCountText += 5;
   if (shownCommentCountText >= comments.length) {
     shownCommentCountText = comments.length;
-    socialCommentsLoader.disabled = true;
+    socialCommentsLoader.classList.add('hidden');
   }
   renderComments();
 }
