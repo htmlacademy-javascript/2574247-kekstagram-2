@@ -1,7 +1,7 @@
 import { thumbnailsContainer } from './thumbnail-render.js';
 import { mockedPhotos } from './data.js';
 
-const bigPicture = document.querySelector('.big-picture');
+const bigPicture = document.querySelector ('.big-picture');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const socialCaption = bigPicture.querySelector('.social__caption');
@@ -19,7 +19,7 @@ function renderComments() {
   const currentCount = Math.min(shownCommentCountText, totalComments);
 
   shownCommentCount.textContent = currentCount;
-  socialCommentsTemplate.innerHTML = '';
+  socialCommentsTemplate.replaceChildren();
   const currentPhotoComments = comments.slice(0, currentCount).map(({ avatar, name, message }) => `
     <li class="social__comment">
       <img class="social__picture" src="${avatar}" alt="${name}" width="35" height="35">
@@ -34,28 +34,30 @@ function onLoadMoreComments() {
     shownCommentCountText = comments.length;
     socialCommentsLoader.classList.add('hidden');
   }
-
-
   renderComments();
 }
 
 const openFullPhoto = (photoId) => {
-  socialCommentsLoader.classList.remove('hidden');
   bigPicture.classList.remove('hidden');
   const currentPhoto = mockedPhotos.find((mockedPhoto) => mockedPhoto.id === +photoId);
 
-  const { url, description, likes, comments: photoComments } = currentPhoto;
+  const { url, description, likes } = currentPhoto;
 
   bigPictureImg.src = url;
   socialCaption.textContent = description;
   likesCount.textContent = likes;
-  commentTotalCount.textContent = photoComments.length;
+  commentTotalCount.textContent = currentPhoto.comments.length;
   socialCommentsTemplate.innerHTML = '';
 
-  comments = photoComments;
+  comments = currentPhoto.comments;
   shownCommentCountText = 5;
-  renderComments();
 
+  renderComments();
+  if(+shownCommentCount.textContent !== comments.length){
+    socialCommentsLoader.classList.remove('hidden');
+  }else{
+    socialCommentsLoader.classList.add('hidden');
+  }
   document.body.classList.add('modal-open');
   socialCommentsLoader.addEventListener('click', onLoadMoreComments);
   document.addEventListener('keydown', onBigPhotoEscKeydown);
