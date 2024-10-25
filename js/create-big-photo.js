@@ -68,7 +68,7 @@ thumbnailsContainer.addEventListener('click', (evt) => {
   if (currentPhotoNode) {
     openFullPhoto(currentPhotoNode.dataset.photoId);
   }
-  
+
 });
 
 bigPictureCancel.addEventListener('click', onCloseBigPhoto);
