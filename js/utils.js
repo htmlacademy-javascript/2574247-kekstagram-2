@@ -11,5 +11,6 @@ function generateRandomId(existingIds) {
   return randomId;
 }
 
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export{getRandomInteger, getRandomArrayElement, generateRandomId};
+export{getRandomInteger, getRandomArrayElement, generateRandomId, isEscapeKey};
