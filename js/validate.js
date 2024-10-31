@@ -69,3 +69,12 @@ const isHashtagsValid = (value) => {
 };
 
 pristine.addValidator(hashtagInput, isHashtagsValid, error);
+
+const onFormSubmit = (evt)=>{
+  evt.preventDefault();
+  if(pristine.validate()){
+    hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g,' ');
+    uploadForm.submit();
+  }
+};
+uploadForm.addEventListener('submit', onFormSubmit);

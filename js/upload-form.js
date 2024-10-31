@@ -28,6 +28,7 @@ function closePhotoEditor(){
   document.removeEventListener('keydown', onDocumentKeydown);
   photoEditorResetBtn.removeEventListener('click', onPhotoEditorResetBtnClick);
   uploadFileControl.value = '';
+  uploadForm.reset();
 }
 
 uploadFileControl.addEventListener('change', ()=>{
@@ -36,5 +37,3 @@ uploadFileControl.addEventListener('change', ()=>{
   photoEditorResetBtn.addEventListener('click', onPhotoEditorResetBtnClick);
   document.addEventListener('keydown', onDocumentKeydown);
 });
-//export{uploadForm,};
-
