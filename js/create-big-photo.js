@@ -1,6 +1,7 @@
 import { thumbnailsContainer } from './thumbnail-render.js';
 import { mockedPhotos } from './data.js';
 
+
 const bigPicture = document.querySelector ('.big-picture');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
@@ -68,7 +69,6 @@ thumbnailsContainer.addEventListener('click', (evt) => {
   if (currentPhotoNode) {
     openFullPhoto(currentPhotoNode.dataset.photoId);
   }
-
 });
 
 bigPictureCancel.addEventListener('click', onCloseBigPhoto);
@@ -86,3 +86,4 @@ function onBigPhotoEscKeydown(evt) {
     onCloseBigPhoto();
   }
 }
+

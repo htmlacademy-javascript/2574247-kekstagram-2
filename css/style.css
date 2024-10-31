@@ -1429,3 +1429,15 @@ main {
 .hidden {
   display: none;
 }
+
+.comment-container {
+  margin-left: 400px;
+}
+
+.img-upload__field-wrapper--error{
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  width: 445px;
+  transform: translate(-50%, 0%);
+}
