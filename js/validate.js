@@ -1,7 +1,6 @@
 const uploadForm = document.querySelector('.img-upload__form');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
-
 const MAX_QUANTITY_HASHTAG = 5;
 const MAX_QUANTITY_SIMBOLS = 20;
 const MAX_COMMENTS_LENGTH = 140;
@@ -75,7 +74,6 @@ const onFormSubmit = (evt)=>{
 
   evt.preventDefault();
   if(pristine.validate()){
-
     hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g,' ');
     uploadForm.submit();
   }

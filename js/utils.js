@@ -14,7 +14,7 @@ function generateRandomId(existingIds) {
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-function passTarget(target, sliderElement, imgUploadEffectLevel) {
+const passTarget = (target, sliderElement, imgUploadEffectLevel) => {
   if (target === 'none') {
     imgUploadEffectLevel.classList.add('hidden');
   } else {
@@ -31,7 +31,9 @@ function passTarget(target, sliderElement, imgUploadEffectLevel) {
       start: 1,
       step: 0.1,
     });
-  } else if (target === 'heat') {
+  }
+
+  if (target === 'heat') {
     unit = '';
     sliderElement.noUiSlider.updateOptions({
       range: {
@@ -41,7 +43,9 @@ function passTarget(target, sliderElement, imgUploadEffectLevel) {
       start: 3,
       step: 0.1,
     });
-  } else if (target === 'marvin') {
+  }
+
+  if (target === 'marvin') {
     unit = '%';
     sliderElement.noUiSlider.updateOptions({
       range: {
@@ -51,7 +55,9 @@ function passTarget(target, sliderElement, imgUploadEffectLevel) {
       start: 100,
       step: 1,
     });
-  } else if (target === 'phobos') {
+  }
+
+  if (target === 'phobos') {
     unit = 'px';
     sliderElement.noUiSlider.updateOptions({
       range: {
@@ -62,8 +68,9 @@ function passTarget(target, sliderElement, imgUploadEffectLevel) {
       step: 0.1,
     });
   }
-}
-function getUnit() {
-  return unit;
-}
+};
+
+const getUnit = () => unit;
+
+
 export{getRandomInteger, getRandomArrayElement, generateRandomId, isEscapeKey, passTarget, getUnit};

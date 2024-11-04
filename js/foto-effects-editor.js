@@ -17,7 +17,7 @@ noUiSlider.create(sliderElement,{
 
 effectsList.addEventListener('click',(evt) => {
   const target = evt.target.value;
-  passTarget(target,sliderElement,imgUploadEffectLevel);
+  passTarget(target, sliderElement, imgUploadEffectLevel);
   sliderElement.noUiSlider.on('update', () => {
     defaultPhoto.style.filter = `${EFFECTS[target]}(${sliderElement.noUiSlider.get()}${getUnit()})`;
   });
