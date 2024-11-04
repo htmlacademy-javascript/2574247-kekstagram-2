@@ -6,6 +6,14 @@ const AVATAR_MIN_INDEX = 1;
 const AVATAR_MAX_INDEX = 6;
 const NUMBER_OF_PHOTOS = 25;
 
+const EFFECTS = {
+  'chrome': 'grayscale',
+  'sepia':  'sepia',
+  'marvin': 'invert',
+  'phobos': 'blur',
+  'heat': 'brightness'
+};
+
 const DESCRIPTION = [
   'фото парка с прудом',
   'фото указателя к морю',
@@ -72,4 +80,5 @@ export{
   DESCRIPTION,
   AUTORSNAME,
   MESSAGES,
+  EFFECTS
 };
