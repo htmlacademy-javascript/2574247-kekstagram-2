@@ -20,6 +20,7 @@ const isCommentsValid = (value) => {
   if(value.trim().length >= MAX_COMMENTS_LENGTH){
     errorMessage = 'Длина комментариев не может составлять больше 140 символов';
   }
+  return true;
 };
 pristine.addValidator(commentInput, isCommentsValid, error);
 
@@ -71,8 +72,10 @@ const isHashtagsValid = (value) => {
 pristine.addValidator(hashtagInput, isHashtagsValid, error);
 
 const onFormSubmit = (evt)=>{
+
   evt.preventDefault();
   if(pristine.validate()){
+
     hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g,' ');
     uploadForm.submit();
   }
