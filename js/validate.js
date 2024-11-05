@@ -1,7 +1,6 @@
 const uploadForm = document.querySelector('.img-upload__form');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
-
 const MAX_QUANTITY_HASHTAG = 5;
 const MAX_QUANTITY_SIMBOLS = 20;
 const MAX_COMMENTS_LENGTH = 140;
@@ -20,6 +19,7 @@ const isCommentsValid = (value) => {
   if(value.trim().length >= MAX_COMMENTS_LENGTH){
     errorMessage = 'Длина комментариев не может составлять больше 140 символов';
   }
+  return true;
 };
 pristine.addValidator(commentInput, isCommentsValid, error);
 
@@ -71,6 +71,7 @@ const isHashtagsValid = (value) => {
 pristine.addValidator(hashtagInput, isHashtagsValid, error);
 
 const onFormSubmit = (evt)=>{
+
   evt.preventDefault();
   if(pristine.validate()){
     hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g,' ');

@@ -7,6 +7,7 @@ const uploadFileControl = uploadForm.querySelector('#upload-file');
 const photoEditorForm = uploadForm.querySelector('.img-upload__overlay');
 const photoEditorResetBtn = photoEditorForm.querySelector('#upload-cancel');
 const commentInput = uploadForm.querySelector('.text__description');
+const imgUploadPreview = document.querySelector('.img-upload__preview img');
 
 const onPhotoEditorResetBtnClick = () => closePhotoEditor();
 
@@ -28,6 +29,7 @@ function closePhotoEditor(){
   document.removeEventListener('keydown', onDocumentKeydown);
   photoEditorResetBtn.removeEventListener('click', onPhotoEditorResetBtnClick);
   uploadFileControl.value = '';
+  imgUploadPreview.removeAttribute('style');
   uploadForm.reset();
 }
 

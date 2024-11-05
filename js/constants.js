@@ -6,6 +6,14 @@ const AVATAR_MIN_INDEX = 1;
 const AVATAR_MAX_INDEX = 6;
 const NUMBER_OF_PHOTOS = 25;
 
+const EFFECTS = {
+  'chrome': 'grayscale',
+  'sepia':  'sepia',
+  'marvin': 'invert',
+  'phobos': 'blur',
+  'heat': 'brightness'
+};
+
 const DESCRIPTION = [
   'фото парка с прудом',
   'фото указателя к морю',
@@ -61,7 +69,7 @@ const MESSAGES = ['Всё отлично!',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-export{
+export {
   LIKES_MIN,
   LIKES_MAX,
   COMMENTS_MIN,
@@ -72,4 +80,5 @@ export{
   DESCRIPTION,
   AUTORSNAME,
   MESSAGES,
+  EFFECTS
 };
