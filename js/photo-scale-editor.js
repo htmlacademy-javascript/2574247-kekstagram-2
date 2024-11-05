@@ -25,7 +25,6 @@ const onValueControlIncrease = () => {
   }
 };
 
-
 smallerControl.addEventListener('click', onValueControlDecrease);
 biggerControl.addEventListener('click', onValueControlIncrease);
 
