@@ -39,3 +39,5 @@ uploadFileControl.addEventListener('change', ()=>{
   photoEditorResetBtn.addEventListener('click', onPhotoEditorResetBtnClick);
   document.addEventListener('keydown', onDocumentKeydown);
 });
+
+export{closePhotoEditor};

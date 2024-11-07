@@ -1,4 +1,4 @@
-import { mockedPhotos } from './data.js';
+import {getFetchUrl} from './get-data.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const thumbnailsContainer = document.querySelector('.pictures');
@@ -17,10 +17,12 @@ const createThumbnail = ({id, url, description, comments, likes}) => {
 };
 const fragment = document.createDocumentFragment();
 
-mockedPhotos.forEach((photo) => {
-  const thumbnail = createThumbnail(photo);
-  fragment.appendChild(thumbnail);
-});
-thumbnailsContainer.append(fragment);
-
+const renderThumbnails = (photos)=>{
+  photos.forEach((photo) => {
+    const thumbnail = createThumbnail(photo);
+    fragment.appendChild(thumbnail);
+  });
+  thumbnailsContainer.append(fragment);
+};
+getFetchUrl(renderThumbnails);
 export {thumbnailsContainer};
