@@ -4,5 +4,6 @@ import './upload-form.js';
 import './validate.js';
 import './photo-scale-editor.js';
 import './foto-effects-editor.js';
-
+import './get-data.js';
+import './send-formData.js';
 

@@ -1,6 +1,5 @@
 import { thumbnailsContainer } from './thumbnail-render.js';
-import { mockedPhotos } from './data.js';
-
+import {getFetchUrl} from './get-data.js';
 
 const bigPicture = document.querySelector ('.big-picture');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
@@ -18,7 +17,6 @@ let comments = [];
 function renderComments() {
   const totalComments = comments.length;
   const currentCount = Math.min(shownCommentCountText, totalComments);
-
   shownCommentCount.textContent = currentCount;
   socialCommentsTemplate.replaceChildren();
   const currentPhotoComments = comments.slice(0, currentCount).map(({ avatar, name, message }) => `
@@ -38,9 +36,11 @@ function onLoadMoreComments() {
   renderComments();
 }
 
-const openFullPhoto = (photoId) => {
+const openFullPhoto = (photoId, photos) => {
+
   bigPicture.classList.remove('hidden');
-  const currentPhoto = mockedPhotos.find((mockedPhoto) => mockedPhoto.id === +photoId);
+
+  const currentPhoto = photos.find((photo) => photo.id === +photoId);
 
   const { url, description, likes } = currentPhoto;
 
@@ -64,10 +64,16 @@ const openFullPhoto = (photoId) => {
   document.addEventListener('keydown', onBigPhotoEscKeydown);
 };
 
+
 thumbnailsContainer.addEventListener('click', (evt) => {
   const currentPhotoNode = evt.target.closest('.picture');
+
   if (currentPhotoNode) {
-    openFullPhoto(currentPhotoNode.dataset.photoId);
+    const photoId = currentPhotoNode.dataset.photoId;
+    getFetchUrl((photos)=>{
+      openFullPhoto(photoId,photos);
+    });
+
   }
 });
 
