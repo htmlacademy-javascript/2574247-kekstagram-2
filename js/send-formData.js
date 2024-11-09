@@ -1,12 +1,12 @@
 import {closePhotoEditor} from './upload-form';
 import {isEscapeKey} from './utils.js';
 import {pristine} from './validate.js';
-const body = document.querySelector('body');
+import {body} from './upload-form.js';
+import {uploadForm} from './upload-form.js';
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
-const uploadForm = document.querySelector('.img-upload__form');
 const uploadSubmitBtn = uploadForm.querySelector('.img-upload__submit');
-const SEND_URL = 'https://31.javascript.htmlacadem.pro/kekstagram';
+const SEND_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 
 const isDisabledSubmitBtn = () => {
   uploadSubmitBtn.disabled = true;
@@ -15,20 +15,15 @@ const isRemoveDisabledSubmitBtn = () => {
   uploadSubmitBtn.disabled = false;
 };
 
-const removeMessage = () => {
-  const successMessage = document.querySelector('.success');
-  if(successMessage){
-    successMessage.remove();
-  }
-};
-
-const removeErrorMessage = (evt) => {
+const removeMessage = (evt) => {
   const errorMessage = document.querySelector('.error');
-  if(errorMessage){
-    errorMessage.remove();
+  const successMessage = document.querySelector('.success');
+  if(successMessage) {
+    successMessage.remove();
+  }else{
+    errorMessage.remove(evt);
     evt.stopPropagation();
   }
-//  document.removeEventListener('keydown', onErrorTemplat eKeydown)
 };
 
 const onBodyKeydown = (evt)=>{
@@ -38,21 +33,13 @@ const onBodyKeydown = (evt)=>{
   body.removeEventListener('keydown', onBodyKeydown);
 };
 
-const onErrorTemplateKeydown = (evt)=>{
-  if(isEscapeKey(evt)){
-    removeErrorMessage(evt);
-  }
-  //template.removeEventListener('keydown', onBodyKeydown);
-};
-
 const showErrorMessage = () =>{
   const template = errorTemplate.cloneNode(true);
   body.append(template);
   const errorButton = template.querySelector('.error__button');
   if(errorButton){
-    errorButton.addEventListener('click', removeErrorMessage);
-    template.addEventListener('click', removeErrorMessage);
-    body.addEventListener('keydown', onErrorTemplateKeydown);
+    template.addEventListener('click', removeMessage);
+    body.addEventListener('keydown', onBodyKeydown);
   }
 };
 
@@ -61,7 +48,6 @@ const showSuccessMessage = () => {
   body.append(template);
   const successButton = template.querySelector('.success__button');
   if(successButton){
-    successButton.addEventListener('click', removeMessage);
     template.addEventListener('click', removeMessage);
     body.addEventListener('keydown', onBodyKeydown);
   }

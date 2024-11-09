@@ -1,5 +1,5 @@
+import {body} from './upload-form.js';
 const dataError = document.querySelector('#data-error').content.querySelector('.data-error');
-const body = document.querySelector('body');
 const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram/data';
 
 const showErrorMessage = () => {
@@ -21,5 +21,5 @@ const getFetchUrl = (foo)=> {
     .then((photos) => foo(photos))
     .catch(()=> showErrorMessage());
 };
-export {getFetchUrl};
+export {getFetchUrl, body};
 
