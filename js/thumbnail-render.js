@@ -13,11 +13,19 @@ const createThumbnail = ({id, url, description, comments, likes}) => {
 
   thumbnail.querySelector('.picture__comments').textContent = comments.length;
   thumbnail.querySelector('.picture__likes').textContent = likes;
+  thumbnail.classList.add('thumbnail');
   return thumbnail;
 };
+
+const removeThumbnails = () => {
+  const existingThumbnails = thumbnailsContainer.querySelectorAll('.thumbnail');
+  existingThumbnails.forEach((thumbnail) => thumbnail.remove());
+};
+
 const fragment = document.createDocumentFragment();
 
 const renderThumbnails = (photos)=>{
+  removeThumbnails();
   photos.forEach((photo) => {
     const thumbnail = createThumbnail(photo);
     fragment.appendChild(thumbnail);
@@ -25,4 +33,4 @@ const renderThumbnails = (photos)=>{
   thumbnailsContainer.append(fragment);
 };
 getFetchUrl(renderThumbnails);
-export {thumbnailsContainer};
+export {thumbnailsContainer, renderThumbnails};

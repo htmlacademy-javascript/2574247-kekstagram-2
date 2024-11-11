@@ -1,4 +1,4 @@
-
+const DELAY = 500;
 
 const EFFECTS = {
   'chrome': 'grayscale',
@@ -8,9 +8,4 @@ const EFFECTS = {
   'heat': 'brightness'
 };
 
-
-export {
-
-
-  EFFECTS
-};
+export {EFFECTS, DELAY};
