@@ -1,8 +1,7 @@
+import {defaultPhoto} from './upload-form';
 const smallerControl = document.querySelector('.scale__control--smaller');
 const biggerControl = document.querySelector('.scale__control--bigger');
 const scaleValueControl = document.querySelector('.scale__control--value');
-const imgUploadPreview = document.querySelector('.img-upload__preview img');
-
 const SCALE_STEP = 25;
 const MIN_SCALE = 0;
 const MAX_SCALE = 100;
@@ -11,7 +10,7 @@ let numericValue = parseInt(scaleValueControl.value, 10);
 
 const isScaleValueTransform = (step) => {
   scaleValueControl.value = `${numericValue += step}%`;
-  imgUploadPreview.style.transform = `scale(${numericValue / 100})`;
+  defaultPhoto.style.transform = `scale(${numericValue / 100})`;
 };
 
 const onValueControlDecrease = () => {

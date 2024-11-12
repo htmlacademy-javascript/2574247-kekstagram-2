@@ -64,7 +64,6 @@ const openFullPhoto = (photoId, photos) => {
   document.addEventListener('keydown', onBigPhotoEscKeydown);
 };
 
-
 thumbnailsContainer.addEventListener('click', (evt) => {
   const currentPhotoNode = evt.target.closest('.picture');
 
@@ -73,7 +72,6 @@ thumbnailsContainer.addEventListener('click', (evt) => {
     getFetchUrl((photos)=>{
       openFullPhoto(photoId,photos);
     });
-
   }
 });
 

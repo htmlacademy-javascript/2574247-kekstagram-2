@@ -1,4 +1,7 @@
+import {DELAY} from './constants.js';
+
 let unit = '';
+
 const getRandomInteger = (upper, lower) =>
   Math.floor(Math.random() * (upper - lower + 1)) + lower;
 
@@ -72,5 +75,12 @@ const passTarget = (target, sliderElement, imgUploadEffectLevel) => {
 
 const getUnit = () => unit;
 
+const debounce = (callback, timeoutDelay = DELAY) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
 
-export{getRandomInteger, getRandomArrayElement, generateRandomId, isEscapeKey, passTarget, getUnit};
+export{getRandomInteger, getRandomArrayElement, generateRandomId, isEscapeKey, passTarget, getUnit,debounce};
