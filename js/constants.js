@@ -1,5 +1,7 @@
 const DELAY = 500;
 
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png', 'webp'];
+
 const EFFECTS = {
   'chrome': 'grayscale',
   'sepia':  'sepia',
@@ -8,4 +10,5 @@ const EFFECTS = {
   'heat': 'brightness'
 };
 
-export {EFFECTS, DELAY};
+export {EFFECTS, DELAY, FILE_TYPES};
+
