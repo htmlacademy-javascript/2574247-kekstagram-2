@@ -10,7 +10,6 @@ const commentTotalCount = bigPicture.querySelector('.social__comment-total-count
 const shownCommentCount = bigPicture.querySelector('.social__comment-shown-count');
 const socialCommentsTemplate = document.querySelector('.social__comments');
 const socialCommentsLoader = document.querySelector('.comments-loader');
-
 let shownCommentCountText = 5;
 let comments = [];
 
