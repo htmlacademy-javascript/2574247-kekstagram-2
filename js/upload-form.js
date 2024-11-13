@@ -13,6 +13,9 @@ const effectsPreview = uploadForm.querySelectorAll('.effects__preview');
 
 const isLoadPhoto = () => {
   const file = fileSelector.files[0];
+  if (!file) {
+    return;
+  }
   const fileName = file.name.toLowerCase();
   const fileExt = fileName.split('.').pop();
   const matches = FILE_TYPES.includes(fileExt);
@@ -43,7 +46,7 @@ const onDocumentKeydown = (evt) => {
 
 function closePhotoEditor(){
   photoEditorForm.classList.add('hidden');
-  body.classList.remove('.modal-open');
+  body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
   photoEditorResetBtn.removeEventListener('click', onPhotoEditorResetBtnClick);
   uploadFileControl.value = '';

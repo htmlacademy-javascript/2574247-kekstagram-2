@@ -35,29 +35,30 @@ function onLoadMoreComments() {
   renderComments();
 }
 
-const openFullPhoto = (photoId, photos) => {
+function toggleLoaderVisibility() {
+  if (shownCommentCountText < comments.length) {
+    socialCommentsLoader.classList.remove('hidden');
+  } else {
+    socialCommentsLoader.classList.add('hidden');
+  }
+}
 
+const openFullPhoto = (photoId, photos) => {
   bigPicture.classList.remove('hidden');
 
   const currentPhoto = photos.find((photo) => photo.id === +photoId);
-
   const { url, description, likes } = currentPhoto;
 
   bigPictureImg.src = url;
   socialCaption.textContent = description;
   likesCount.textContent = likes;
   commentTotalCount.textContent = currentPhoto.comments.length;
-  socialCommentsTemplate.innerHTML = '';
-
   comments = currentPhoto.comments;
   shownCommentCountText = 5;
 
   renderComments();
-  if(+shownCommentCount.textContent !== comments.length){
-    socialCommentsLoader.classList.remove('hidden');
-  }else{
-    socialCommentsLoader.classList.add('hidden');
-  }
+  toggleLoaderVisibility();
+
   document.body.classList.add('modal-open');
   socialCommentsLoader.addEventListener('click', onLoadMoreComments);
   document.addEventListener('keydown', onBigPhotoEscKeydown);

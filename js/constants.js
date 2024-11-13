@@ -11,4 +11,3 @@ const EFFECTS = {
 };
 
 export {EFFECTS, DELAY, FILE_TYPES};
-

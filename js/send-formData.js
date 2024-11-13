@@ -6,7 +6,7 @@ import {uploadForm} from './upload-form.js';
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const uploadSubmitBtn = uploadForm.querySelector('.img-upload__submit');
-const SEND_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
+const SEND_URL = 'https://32.javascript.htmlacademy.pro/kekstagram';
 
 const isDisabledSubmitBtn = () => {
   uploadSubmitBtn.disabled = true;

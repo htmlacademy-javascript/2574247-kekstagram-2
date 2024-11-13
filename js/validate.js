@@ -18,6 +18,7 @@ const isCommentsValid = (value) => {
   errorMessage = '';
   if(value.trim().length >= MAX_COMMENTS_LENGTH){
     errorMessage = 'Длина комментариев не может составлять больше 140 символов';
+    return false;
   }
   return true;
 };
@@ -38,16 +39,16 @@ const isHashtagsValid = (value) => {
     },
     {
       check: hashtags.some((hashtag) => !/^#[a-zа-яё0-9]*$/i.test(hashtag)),
-      error: 'строка должна состоять из букв и чисел, хэштеги разделяются пробелами',
+      error: 'Строка должна состоять из букв и чисел, хэштеги разделяются пробелами',
     },
 
     {
       check: hashtags.some((hashtag) => hashtag === '#'),
-      error: 'хеш-тег не может состоять только из одной решётки',
+      error: 'Хеш-тег не может состоять только из одной решётки',
     },
     {
       check: hashtags.some((hashtag) => hashtag.length >= MAX_QUANTITY_SIMBOLS),
-      error: `максимальная длина одного хэштега ${MAX_QUANTITY_SIMBOLS} символов, включая решётку`,
+      error: `Максимальная длина одного хэштега ${MAX_QUANTITY_SIMBOLS} символов, включая решётку`,
     },
     {
       check: hashtags.length > MAX_QUANTITY_HASHTAG,
@@ -64,18 +65,10 @@ const isHashtagsValid = (value) => {
     if(isInvallid){
       errorMessage = rule.error;
     }
-    return !isInvallid;
+    return true;
   });
 };
 
 pristine.addValidator(hashtagInput, isHashtagsValid, error);
 
-// const onFormSubmit = (evt)=>{
-//   evt.preventDefault();
-//   if(pristine.validate()){
-//     //hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g,' ');
-//     uploadForm.submit();
-//   }
-// };
-// uploadForm.addEventListener('submit', onFormSubmit);
 export{pristine};
