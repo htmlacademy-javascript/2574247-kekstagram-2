@@ -47,6 +47,8 @@ const showSuccessMessage = () => {
   const template = successTemplate.cloneNode(true);
   body.append(template);
   const successButton = template.querySelector('.success__button');
+
+  closePhotoEditor();
   if(successButton){
     template.addEventListener('click', removeMessage);
     body.addEventListener('keydown', onBodyKeydown);
@@ -55,8 +57,7 @@ const showSuccessMessage = () => {
 
 uploadForm.addEventListener('submit', (evt)=>{
   evt.preventDefault();
-  const isValid = pristine.validate();
-  if(!isValid) {
+  if(!pristine.validate()) {
     return;
   }
   const formData = new FormData(evt.target);
@@ -72,7 +73,6 @@ uploadForm.addEventListener('submit', (evt)=>{
       throw new Error('Network response was not ok');
     }else{
       showSuccessMessage();
-      closePhotoEditor();
     }
   })
     .catch(() => {

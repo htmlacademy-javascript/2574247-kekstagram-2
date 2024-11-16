@@ -1,5 +1,5 @@
 import {isEscapeKey} from './utils.js';
-import { FILE_TYPES } from './constants.js';
+import {sliderDifault}from './foto-effects-editor.js';
 const body = document.querySelector('body');
 const uploadForm = document.querySelector('.img-upload__form');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
@@ -10,6 +10,7 @@ const commentInput = uploadForm.querySelector('.text__description');
 const defaultPhoto = document.querySelector('.img-upload__preview img');
 const fileSelector = uploadForm.querySelector('.img-upload__input');
 const effectsPreview = uploadForm.querySelectorAll('.effects__preview');
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png', 'webp'];
 
 const isLoadPhoto = () => {
   const file = fileSelector.files[0];
@@ -30,16 +31,14 @@ const isLoadPhoto = () => {
   }
 };
 
-const onPhotoEditorResetBtnClick = () => closePhotoEditor();
-
 const onDocumentKeydown = (evt) => {
   if(isEscapeKey(evt)){
     evt.preventDefault();
     if(document.activeElement === hashtagInput || document.activeElement === commentInput){
       evt.stopPropagation();
     }else{
-      uploadForm.reset();
       closePhotoEditor();
+      uploadForm.reset();
     }
   }
 };
@@ -48,9 +47,10 @@ function closePhotoEditor(){
   photoEditorForm.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-  photoEditorResetBtn.removeEventListener('click', onPhotoEditorResetBtnClick);
+  photoEditorResetBtn.removeEventListener('click', closePhotoEditor);
   uploadFileControl.value = '';
   defaultPhoto.removeAttribute('style');
+  sliderDifault();
   uploadForm.reset();
 }
 
@@ -58,8 +58,10 @@ const onUploadFormShow = ()=>{
   photoEditorForm.classList.remove('hidden');
   body.classList.add('modal-open');
   isLoadPhoto();
-  photoEditorResetBtn.addEventListener('click', onPhotoEditorResetBtnClick);
   document.addEventListener('keydown', onDocumentKeydown);
 };
+
 uploadFileControl.addEventListener('change', onUploadFormShow);
+photoEditorResetBtn.addEventListener('click', closePhotoEditor);
+
 export{closePhotoEditor, body, uploadForm, defaultPhoto};

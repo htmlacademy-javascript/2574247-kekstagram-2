@@ -45,7 +45,6 @@ function toggleLoaderVisibility() {
 
 const openFullPhoto = (photoId, photos) => {
   bigPicture.classList.remove('hidden');
-
   const currentPhoto = photos.find((photo) => photo.id === +photoId);
   const { url, description, likes } = currentPhoto;
 
@@ -66,25 +65,24 @@ const openFullPhoto = (photoId, photos) => {
 
 thumbnailsContainer.addEventListener('click', (evt) => {
   const currentPhotoNode = evt.target.closest('.picture');
-
   if (currentPhotoNode) {
     const photoId = currentPhotoNode.dataset.photoId;
     getFetchUrl((photos)=>{
-      openFullPhoto(photoId,photos);
+      openFullPhoto(photoId, photos);
     });
   }
 });
 
 bigPictureCancel.addEventListener('click', onCloseBigPhoto);
 
-function onCloseBigPhoto() {
+function onCloseBigPhoto() { //Фанкшен деклорашен использован для подёма области видимости;
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
   socialCommentsLoader.removeEventListener('click', onLoadMoreComments);
   document.removeEventListener('keydown', onBigPhotoEscKeydown);
 }
 
-function onBigPhotoEscKeydown(evt) {
+function onBigPhotoEscKeydown(evt) {//Фанкшен деклорашен использован для подёма области видимости;
   if (evt.key === 'Escape') {
     evt.preventDefault();
     onCloseBigPhoto();

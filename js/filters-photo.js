@@ -1,11 +1,16 @@
 import { getFetchUrl } from './get-data';
 import { renderThumbnails } from './thumbnail-render';
 import { debounce } from './utils.js';
-import { DELAY } from './constants.js';
+import { DELAY } from './utils.js';
+const filterContainer = document.querySelector('.img-filters');
 const filterButtonsElement = document.querySelector('.img-filters');
 let activeFilter = 'filter-default';
 const ACTIVE_CLASS = 'img-filters__button--active';
 const MAX_PICTURE_COUNT = 10;
+
+const filterContainerRemoveHidden = () => {
+  filterContainer.classList.remove('hidden');
+};
 
 const applyFilter = (photos) => {
   switch (activeFilter) {
@@ -41,5 +46,5 @@ getFetchUrl((photos) => {
     onFilterChange(photos);
   });
 });
-
+export {filterContainer, filterContainerRemoveHidden};
 

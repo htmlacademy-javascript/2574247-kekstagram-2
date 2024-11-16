@@ -8,6 +8,7 @@ const MAX_COMMENTS_LENGTH = 140;
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__form',
   errorTextParent: 'img-upload__field-wrapper ',
+  errorTextTag: 'div',
   errorTextClass: 'img-upload__field-wrapper--error',
 });
 
@@ -31,6 +32,7 @@ const isHashtagsValid = (value) => {
   if(!inputText){
     return true;
   }
+
   const hashtags = inputText.split(/\s+/);
   const rules = [
     {
@@ -64,11 +66,11 @@ const isHashtagsValid = (value) => {
     const isInvallid = rule.check;
     if(isInvallid){
       errorMessage = rule.error;
+      return false;
     }
     return true;
   });
 };
-
 pristine.addValidator(hashtagInput, isHashtagsValid, error);
 
 export{pristine};

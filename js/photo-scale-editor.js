@@ -3,7 +3,7 @@ const smallerControl = document.querySelector('.scale__control--smaller');
 const biggerControl = document.querySelector('.scale__control--bigger');
 const scaleValueControl = document.querySelector('.scale__control--value');
 const SCALE_STEP = 25;
-const MIN_SCALE = 0;
+const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 
 let numericValue = parseInt(scaleValueControl.value, 10);
@@ -23,7 +23,6 @@ const onValueControlIncrease = () => {
     isScaleValueTransform(SCALE_STEP);
   }
 };
-
 smallerControl.addEventListener('click', onValueControlDecrease);
 biggerControl.addEventListener('click', onValueControlIncrease);
 
