@@ -10,7 +10,6 @@ const commentTotalCount = bigPicture.querySelector('.social__comment-total-count
 const shownCommentCount = bigPicture.querySelector('.social__comment-shown-count');
 const socialCommentsTemplate = document.querySelector('.social__comments');
 const socialCommentsLoader = document.querySelector('.comments-loader');
-
 let shownCommentCountText = 5;
 let comments = [];
 
@@ -36,29 +35,29 @@ function onLoadMoreComments() {
   renderComments();
 }
 
+function toggleLoaderVisibility() {
+  if (shownCommentCountText < comments.length) {
+    socialCommentsLoader.classList.remove('hidden');
+  } else {
+    socialCommentsLoader.classList.add('hidden');
+  }
+}
+
 const openFullPhoto = (photoId, photos) => {
-
   bigPicture.classList.remove('hidden');
-
   const currentPhoto = photos.find((photo) => photo.id === +photoId);
-
   const { url, description, likes } = currentPhoto;
 
   bigPictureImg.src = url;
   socialCaption.textContent = description;
   likesCount.textContent = likes;
   commentTotalCount.textContent = currentPhoto.comments.length;
-  socialCommentsTemplate.innerHTML = '';
-
   comments = currentPhoto.comments;
   shownCommentCountText = 5;
 
   renderComments();
-  if(+shownCommentCount.textContent !== comments.length){
-    socialCommentsLoader.classList.remove('hidden');
-  }else{
-    socialCommentsLoader.classList.add('hidden');
-  }
+  toggleLoaderVisibility();
+
   document.body.classList.add('modal-open');
   socialCommentsLoader.addEventListener('click', onLoadMoreComments);
   document.addEventListener('keydown', onBigPhotoEscKeydown);
@@ -66,25 +65,24 @@ const openFullPhoto = (photoId, photos) => {
 
 thumbnailsContainer.addEventListener('click', (evt) => {
   const currentPhotoNode = evt.target.closest('.picture');
-
   if (currentPhotoNode) {
     const photoId = currentPhotoNode.dataset.photoId;
     getFetchUrl((photos)=>{
-      openFullPhoto(photoId,photos);
+      openFullPhoto(photoId, photos);
     });
   }
 });
 
 bigPictureCancel.addEventListener('click', onCloseBigPhoto);
 
-function onCloseBigPhoto() {
+function onCloseBigPhoto() { //Фанкшен деклорашен использован для подёма области видимости;
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
   socialCommentsLoader.removeEventListener('click', onLoadMoreComments);
   document.removeEventListener('keydown', onBigPhotoEscKeydown);
 }
 
-function onBigPhotoEscKeydown(evt) {
+function onBigPhotoEscKeydown(evt) {//Фанкшен деклорашен использован для подёма области видимости;
   if (evt.key === 'Escape') {
     evt.preventDefault();
     onCloseBigPhoto();

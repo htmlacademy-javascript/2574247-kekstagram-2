@@ -7,3 +7,4 @@ import './foto-effects-editor.js';
 import './get-data.js';
 import './send-formData.js';
 import './filters-photo.js';
+

@@ -4,20 +4,22 @@ const commentInput = uploadForm.querySelector('.text__description');
 const MAX_QUANTITY_HASHTAG = 5;
 const MAX_QUANTITY_SIMBOLS = 20;
 const MAX_COMMENTS_LENGTH = 140;
-
+let errorMessage = '';
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__form',
   errorTextParent: 'img-upload__field-wrapper ',
+  errorTextTag: 'div',
   errorTextClass: 'img-upload__field-wrapper--error',
 });
 
-let errorMessage = '';
+
 const error = () => errorMessage;
 
 const isCommentsValid = (value) => {
   errorMessage = '';
   if(value.trim().length >= MAX_COMMENTS_LENGTH){
     errorMessage = 'Длина комментариев не может составлять больше 140 символов';
+    return false;
   }
   return true;
 };
@@ -25,57 +27,39 @@ pristine.addValidator(commentInput, isCommentsValid, error);
 
 const isHashtagsValid = (value) => {
   errorMessage = '';
-  const inputText = value.toLowerCase().trim();
+  const inputTextValue = value.toLowerCase().trim();
 
-  if(!inputText){
+  if (!inputTextValue) {
     return true;
   }
-  const hashtags = inputText.split(/\s+/);
-  const rules = [
-    {
-      check: hashtags.some((hashtag) => hashtag[0] !== '#' && hashtag[0].length !== 0),
-      error: 'Хэштег начинается с символа \'#\'',
-    },
-    {
-      check: hashtags.some((hashtag) => !/^#[a-zа-яё0-9]*$/i.test(hashtag)),
-      error: 'строка должна состоять из букв и чисел, хэштеги разделяются пробелами',
-    },
 
-    {
-      check: hashtags.some((hashtag) => hashtag === '#'),
-      error: 'хеш-тег не может состоять только из одной решётки',
-    },
-    {
-      check: hashtags.some((hashtag) => hashtag.length >= MAX_QUANTITY_SIMBOLS),
-      error: `максимальная длина одного хэштега ${MAX_QUANTITY_SIMBOLS} символов, включая решётку`,
-    },
-    {
-      check: hashtags.length > MAX_QUANTITY_HASHTAG,
-      error: `Максимальное количество хешетегов ${MAX_QUANTITY_HASHTAG}`,
-    },
-    {
-      check: hashtags.length !== new Set(hashtags).size,
-      error: 'Один и тот же хештег неможет быть использован дважды ',
-    },
-  ];
+  const hashtags = inputTextValue.split(/\s+/);
 
-  return rules.every((rule) => {
-    const isInvallid = rule.check;
-    if(isInvallid){
-      errorMessage = rule.error;
-    }
-    return !isInvallid;
-  });
+  if (hashtags.some((hashtag) => hashtag[0] !== '#' && hashtag[0].length !== 0)) {
+    errorMessage = 'Хэштег начинается с символа \'#\'';
+    return false;
+  }
+  if (hashtags.some((hashtag) => !/^#[a-zа-яё0-9]*$/i.test(hashtag))) {
+    errorMessage = 'Строка должна состоять из букв и чисел, хэштеги разделяются пробелами';
+    return false;
+  }
+  if (hashtags.some((hashtag) => hashtag === '#')) {
+    errorMessage = 'Хеш-тег не может состоять только из одной решётки';
+    return false;
+  }
+  if (hashtags.some((hashtag) => hashtag.length >= MAX_QUANTITY_SIMBOLS)) {
+    errorMessage = `Максимальная длина одного хэштега ${MAX_QUANTITY_SIMBOLS} символов, включая решётку`;
+    return false;
+  }
+  if (hashtags.length > MAX_QUANTITY_HASHTAG) {
+    errorMessage = `Максимальное количество хештегов ${MAX_QUANTITY_HASHTAG}`;
+    return false;
+  }
+  if (hashtags.length !== new Set(hashtags).size) {
+    errorMessage = 'Один и тот же хештег не может быть использован дважды';
+    return false;
+  }
+  return true;
 };
-
 pristine.addValidator(hashtagInput, isHashtagsValid, error);
-
-// const onFormSubmit = (evt)=>{
-//   evt.preventDefault();
-//   if(pristine.validate()){
-//     //hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g,' ');
-//     uploadForm.submit();
-//   }
-// };
-// uploadForm.addEventListener('submit', onFormSubmit);
 export{pristine};
