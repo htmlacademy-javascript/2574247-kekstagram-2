@@ -1,5 +1,6 @@
 import {isEscapeKey} from './utils.js';
 import {sliderDifault}from './foto-effects-editor.js';
+const imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
 const body = document.querySelector('body');
 const uploadForm = document.querySelector('.img-upload__form');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
@@ -47,7 +48,6 @@ function closePhotoEditor(){
   photoEditorForm.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-  photoEditorResetBtn.removeEventListener('click', closePhotoEditor);
   uploadFileControl.value = '';
   defaultPhoto.removeAttribute('style');
   sliderDifault();
@@ -58,6 +58,7 @@ const onUploadFormShow = ()=>{
   photoEditorForm.classList.remove('hidden');
   body.classList.add('modal-open');
   isLoadPhoto();
+  imgUploadEffectLevel.classList.add('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
 };
 

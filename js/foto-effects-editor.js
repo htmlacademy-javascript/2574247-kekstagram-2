@@ -1,3 +1,4 @@
+
 const defaultPhoto = document.querySelector('.img-upload__preview img');
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectsList = document.querySelector('.effects__list');
@@ -12,7 +13,7 @@ const EFFECTS = {
   heat: { style: 'brightness', unit: '', range: { min: 1, max: 3 }, step: 0.1, start: 3 },
   none: { style: 'none', unit: '', range: { min: 0, max: 1 }, step: 0.1, start: 1 }
 };
-imgUploadEffectLevel.classList.add('hidden');
+
 noUiSlider.create(sliderElement, {
   range: {
     min: 0,
@@ -54,6 +55,7 @@ effectsList.addEventListener('click', (evt) => {
 
 const sliderDifault = () => {
   sliderElement.noUiSlider.set(1);
+  defaultPhoto.style.filter = 'none';
 };
 export{sliderDifault};
 
