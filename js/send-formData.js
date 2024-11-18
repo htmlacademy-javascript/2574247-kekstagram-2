@@ -8,7 +8,6 @@ const successTemplate = document.querySelector('#success').content.querySelector
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const uploadSubmitBtn = uploadForm.querySelector('.img-upload__submit');
 
-
 const isDisabledSubmitBtn = () => {
   uploadSubmitBtn.disabled = true;
 };
@@ -27,14 +26,14 @@ const onMessageRemove = (evt) => {
   }
 };
 
-const onBodyKeydown = (evt)=>{
+const onBodyKeydown = (evt) => {
   if(isEscapeKey(evt)){
     onMessageRemove(evt);
   }
   body.removeEventListener('keydown', onBodyKeydown);
 };
 
-const showErrorMessage = () =>{
+const showErrorMessage = () => {
   const template = errorTemplate.cloneNode(true);
   body.append(template);
   const errorButton = template.querySelector('.error__button');
@@ -48,7 +47,6 @@ const showSuccessMessage = () => {
   const template = successTemplate.cloneNode(true);
   body.append(template);
   const successButton = template.querySelector('.success__button');
-
   onPhotoEditorClose();
   if(successButton){
     template.addEventListener('click', onMessageRemove);
@@ -56,7 +54,7 @@ const showSuccessMessage = () => {
   }
 };
 
-uploadForm.addEventListener('submit', (evt)=>{
+uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   if(!pristine.validate()) {
     return;
@@ -69,7 +67,7 @@ uploadForm.addEventListener('submit', (evt)=>{
       method: 'post',
       body: formData,
     },
-  ).then((response)=>{
+  ).then((response) => {
     if(!response.ok){
       throw new Error('Network response was not ok');
     }else{
@@ -79,7 +77,7 @@ uploadForm.addEventListener('submit', (evt)=>{
     .catch(() => {
       showErrorMessage();
     })
-    .finally(()=>{
+    .finally(() => {
       isRemoveDisabledSubmitBtn();
     });
 });
