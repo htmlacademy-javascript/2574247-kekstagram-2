@@ -26,7 +26,7 @@ function renderComments() {
   socialCommentsTemplate.insertAdjacentHTML('beforeEnd', currentPhotoComments);
 }
 
-function onLoadMoreComments() {
+function onCommentsLoadMore() {
   shownCommentCountText += 5;
   if (shownCommentCountText >= comments.length) {
     shownCommentCountText = comments.length;
@@ -59,7 +59,7 @@ const openFullPhoto = (photoId, photos) => {
   toggleLoaderVisibility();
 
   document.body.classList.add('modal-open');
-  socialCommentsLoader.addEventListener('click', onLoadMoreComments);
+  socialCommentsLoader.addEventListener('click', onCommentsLoadMore);
   document.addEventListener('keydown', onBigPhotoEscKeydown);
 };
 
@@ -73,19 +73,19 @@ thumbnailsContainer.addEventListener('click', (evt) => {
   }
 });
 
-bigPictureCancel.addEventListener('click', onCloseBigPhoto);
+bigPictureCancel.addEventListener('click', onBigPhotoClose);
 
-function onCloseBigPhoto() { //Фанкшен деклорашен использован для подёма области видимости;
+function onBigPhotoClose() { //Фанкшен деклорашен использован для подёма области видимости;
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  socialCommentsLoader.removeEventListener('click', onLoadMoreComments);
+  socialCommentsLoader.removeEventListener('click', onCommentsLoadMore);
   document.removeEventListener('keydown', onBigPhotoEscKeydown);
 }
 
 function onBigPhotoEscKeydown(evt) {//Фанкшен деклорашен использован для подёма области видимости;
   if (evt.key === 'Escape') {
     evt.preventDefault();
-    onCloseBigPhoto();
+    onBigPhotoClose();
   }
 }
 

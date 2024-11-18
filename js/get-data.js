@@ -1,8 +1,9 @@
+const ERROR_DELAY = 5000;
 import {body} from './upload-form.js';
 const dataError = document.querySelector('#data-error').content.querySelector('.data-error');
 const imgFilters = document.querySelector('.img-filters');
 const GET_URL = 'https://32.javascript.htmlacademy.pro/kekstagram/data';
-const ERROR_DELAY = 5000;
+
 
 imgFilters.classList.remove('hidden');
 const showErrorMessage = () => {

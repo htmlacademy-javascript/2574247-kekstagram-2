@@ -1,5 +1,5 @@
 import {isEscapeKey} from './utils.js';
-import {sliderDifault}from './foto-effects-editor.js';
+import {resetSlider}from './foto-effects-editor.js';
 const imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
 const body = document.querySelector('body');
 const uploadForm = document.querySelector('.img-upload__form');
@@ -28,7 +28,7 @@ const isLoadPhoto = () => {
       effect.style.backgroundImage = `url(${url})`;
     });
   } else {
-    closePhotoEditor();
+    onPhotoEditorClose();
   }
 };
 
@@ -38,19 +38,19 @@ const onDocumentKeydown = (evt) => {
     if(document.activeElement === hashtagInput || document.activeElement === commentInput){
       evt.stopPropagation();
     }else{
-      closePhotoEditor();
+      onPhotoEditorClose();
       uploadForm.reset();
     }
   }
 };
 
-function closePhotoEditor(){
+function onPhotoEditorClose(){
   photoEditorForm.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
   uploadFileControl.value = '';
   defaultPhoto.removeAttribute('style');
-  sliderDifault();
+  resetSlider();
   uploadForm.reset();
 }
 
@@ -63,6 +63,6 @@ const onUploadFormShow = ()=>{
 };
 
 uploadFileControl.addEventListener('change', onUploadFormShow);
-photoEditorResetBtn.addEventListener('click', closePhotoEditor);
+photoEditorResetBtn.addEventListener('click', onPhotoEditorClose);
 
-export{closePhotoEditor, body, uploadForm, defaultPhoto};
+export{onPhotoEditorClose, body, uploadForm, defaultPhoto};

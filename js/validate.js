@@ -1,9 +1,10 @@
+const MAX_QUANTITY_HASHTAG = 5;
+const MAX_QUANTITY_SIMBOL = 20;
+const MAX_COMMENTS_LENGTH = 140;
 const uploadForm = document.querySelector('.img-upload__form');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
-const MAX_QUANTITY_HASHTAG = 5;
-const MAX_QUANTITY_SIMBOLS = 20;
-const MAX_COMMENTS_LENGTH = 140;
+
 let errorMessage = '';
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__form',
@@ -13,7 +14,7 @@ const pristine = new Pristine(uploadForm, {
 });
 
 
-const error = () => errorMessage;
+const showEror = () => errorMessage;
 
 const isCommentsValid = (value) => {
   errorMessage = '';
@@ -23,7 +24,7 @@ const isCommentsValid = (value) => {
   }
   return true;
 };
-pristine.addValidator(commentInput, isCommentsValid, error);
+pristine.addValidator(commentInput, isCommentsValid, showEror);
 
 const isHashtagsValid = (value) => {
   errorMessage = '';
@@ -47,8 +48,8 @@ const isHashtagsValid = (value) => {
     errorMessage = 'Хеш-тег не может состоять только из одной решётки';
     return false;
   }
-  if (hashtags.some((hashtag) => hashtag.length >= MAX_QUANTITY_SIMBOLS)) {
-    errorMessage = `Максимальная длина одного хэштега ${MAX_QUANTITY_SIMBOLS} символов, включая решётку`;
+  if (hashtags.some((hashtag) => hashtag.length >= MAX_QUANTITY_SIMBOL)) {
+    errorMessage = `Максимальная длина одного хэштега ${MAX_QUANTITY_SIMBOL} символов, включая решётку`;
     return false;
   }
   if (hashtags.length > MAX_QUANTITY_HASHTAG) {
@@ -61,5 +62,5 @@ const isHashtagsValid = (value) => {
   }
   return true;
 };
-pristine.addValidator(hashtagInput, isHashtagsValid, error);
+pristine.addValidator(hashtagInput, isHashtagsValid, showEror);
 export{pristine};
