@@ -1,5 +1,8 @@
 import {isEscapeKey} from './utils.js';
 import {resetSlider}from './foto-effects-editor.js';
+
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png', 'webp'];
+
 const imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
 const body = document.querySelector('body');
 const uploadForm = document.querySelector('.img-upload__form');
@@ -11,7 +14,7 @@ const commentInput = uploadForm.querySelector('.text__description');
 const defaultPhoto = document.querySelector('.img-upload__preview img');
 const fileSelector = uploadForm.querySelector('.img-upload__input');
 const effectsPreview = uploadForm.querySelectorAll('.effects__preview');
-const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png', 'webp'];
+
 
 const isLoadPhoto = () => {
   const file = fileSelector.files[0];
