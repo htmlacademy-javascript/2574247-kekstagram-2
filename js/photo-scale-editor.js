@@ -1,7 +1,9 @@
+import {defaultPhoto} from './upload-form';
+
 const SCALE_STEP = 25;
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
-import {defaultPhoto} from './upload-form';
+
 const smallerControl = document.querySelector('.scale__control--smaller');
 const biggerControl = document.querySelector('.scale__control--bigger');
 const scaleValueControl = document.querySelector('.scale__control--value');

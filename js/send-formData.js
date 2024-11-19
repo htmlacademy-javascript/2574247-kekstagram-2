@@ -1,9 +1,11 @@
-const SEND_URL = 'https://32.javascript.htmlacademy.pro/kekstagram';
 import {onPhotoEditorClose} from './upload-form';
 import {isEscapeKey} from './utils.js';
 import {pristine} from './validate.js';
 import {body} from './upload-form.js';
 import {uploadForm} from './upload-form.js';
+
+const SEND_URL = 'https://32.javascript.htmlacademy.pro/kekstagram';
+
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const uploadSubmitBtn = uploadForm.querySelector('.img-upload__submit');

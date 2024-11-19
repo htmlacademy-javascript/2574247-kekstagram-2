@@ -1,4 +1,5 @@
 import {getFetchUrl} from './get-data.js';
+
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const thumbnailsContainer = document.querySelector('.pictures');
 
